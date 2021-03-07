@@ -9,11 +9,14 @@ public class Player : MonoBehaviour
     public float jumpingSpeed;
 
     private Rigidbody2D playerRigidbody;
+    private float height;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRigidbody = gameObject.GetComponent<Rigidbody2D>();
+
+        height = gameObject.GetComponent<CapsuleCollider2D>().size.y;
     }
 
     // Update is called once per frame
@@ -25,7 +28,11 @@ public class Player : MonoBehaviour
                  playerRigidbody.velocity.y
              );
         //TO MAKE THE PLAYER JUMP
-        if (Input.GetAxis("Jump") > 0)
+       // RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, ( height / 2) + 0.1f);
+       // Debug.Log(hit.collider.name);
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - height / 2 - 0.01f), Vector2.down, 0.02f);
+
+        if (hit.collider != null &&  Input.GetAxis("Jump") > 0)
         {
             playerRigidbody.velocity = new Vector2(
                     playerRigidbody.velocity.x,
