@@ -20,6 +20,23 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    void OnTriggerEnter2D(Collider2D otherCollider)
+    {
+        Debug.Log(otherCollider.gameObject.name);
+        // Collect coins.
+        if (otherCollider.gameObject.tag == "Coin")
+        {
+           
+            Destroy(otherCollider.gameObject);
+
+           
+        }
+
+     
+
+   
+    }
     void Update()
     {
         // TO MAKE THE PLAYER MOVE HORIZAONTALLY
