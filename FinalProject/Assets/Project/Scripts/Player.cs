@@ -30,10 +30,10 @@ public class Player : MonoBehaviour
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
         Debug.Log(otherCollider.gameObject.name);
-        // Collect coins.
+        // Collects coin
         if (otherCollider.gameObject.tag == "Coin")
         {
-           
+           //count coins
             Destroy(otherCollider.gameObject);
 
            
