@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hittable: 1
-  movingSpeed: 3
+  movingSpeed: 9
 --- !u!70 &2508257730156633578
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

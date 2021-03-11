@@ -32,45 +32,37 @@ public class Shell : Enemy
             if (movingRight)
             {
                 RaycastHit2D rightHit = Physics2D.Raycast(new Vector2(transform.position.x + width / 2 + 0.01f, transform.position.y), Vector2.right, 0.1f);
-                if (rightHit.collider != null)
-                {
-                    movingRight = !movingRight;
-                  
-                }
+      
 
-                //if (rightHit.collider != null)
-                //{
-                //    if (rightHit.collider.gameObject.tag == "Enemy")
-                //    {
-                //        Destroy(rightHit.collider.gameObject);
-                //    }
-                //    else
-                //    {
-                //        movingRight = !movingRight;
-                //    }
-                //}
+               if (rightHit.collider != null)
+                {
+                    if (rightHit.collider.gameObject.tag == "Enemy")
+                    {
+                        Destroy(rightHit.collider.gameObject);
+                   }
+                   else
+                    {
+                       movingRight = !movingRight;
+                    }
+                }
 
             }
             else
             {
                 RaycastHit2D leftHit = Physics2D.Raycast(new Vector2(transform.position.x - width / 2 - 0.01f, transform.position.y), Vector2.left, 0.1f);
+          
+
                 if (leftHit.collider != null)
                 {
-                     movingRight = !movingRight;
-                  
+                    if (leftHit.collider.gameObject.tag == "Enemy")
+                   {
+                        Destroy(leftHit.collider.gameObject);
+                   }
+                    else
+                    {
+                        movingRight = !movingRight;
+                    }
                 }
-
-                //if (leftHit.collider != null)
-                //{
-                //    if (leftHit.collider.gameObject.tag == "Enemy")
-                //    {
-                //        Destroy(leftHit.collider.gameObject);
-                //    }
-                //    else
-                //    {
-                //        movingRight = !movingRight;
-                //    }
-                //}
             }
         }
     }

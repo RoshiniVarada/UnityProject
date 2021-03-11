@@ -1,0 +1,21 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+/FinalProject/.vs
+
+/FinalProject/Library
+
+
+/FinalProject/obj
+
+
+/FinalProject/Temp
+
+
+/FinalProject/Assembly-Csharp
+
+
+
+/FinalProject/FinalProject.sln
+
+/FinalProject/Assembly-CSharp.csproj
+
