@@ -2,17 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupBlock : MonoBehaviour
+public class PowerupBlock : Block
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public GameObject powerupPrefab;
+	//public Sprite brickSprite;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private bool spawned;
+
+	public override void OnHit(Player player)
+	{
+		if (!spawned)
+		{
+			spawned = true;
+
+			GameObject powerupInstance = GameObject.Instantiate(powerupPrefab, transform.parent);
+			powerupInstance.transform.position = transform.position + Vector3.up * 1.2f;
+
+			//gameObject.GetComponentInChildren<SpriteRenderer>().sprite = brickSprite;
+		}
+	}
 }
