@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
     private float height;
 
     private bool dead;
+    private bool hasPowerup;
+    private bool isInvincible;
     public bool Dead { get { return dead; } }
 
     // Start is called before the first frame update
@@ -97,6 +99,17 @@ public class Player : MonoBehaviour
             Hurt();
         }
 
+        // Collect powerups.
+        if (otherCollider.gameObject.tag == "Powerup")
+        {
+            //activate powerup
+            hasPowerup = true;
+            Destroy(otherCollider.gameObject);
+
+           // transform.localScale = new Vector3(1.0f, powerupScale, 1.0f);
+           // height *= powerupScale;
+
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -152,17 +165,38 @@ public class Player : MonoBehaviour
 
     void Hurt()
     {
+        if (!hasPowerup)
+        {
+            if (!isInvincible)
+            {
+                GetComponent<Collider2D>().enabled = false;
+                playerRigidbody.velocity = new Vector2(
+                    0,
+                    jumpingSpeed
+                );
 
-        GetComponent<Collider2D>().enabled = false;
-        playerRigidbody.velocity = new Vector2(
-            0,
-            jumpingSpeed
-        );
+                dead = true;
 
-        dead = true;
+                Destroy(gameObject, 3f);
+            }
 
-        Destroy(gameObject, 3f);
 
+        }
+        else
+        {
+            hasPowerup = false;
+            StartCoroutine(InvincibilityRoutine(2.0f));
+        }
+
+    }
+
+    IEnumerator InvincibilityRoutine(float duration)
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(duration);
+
+        isInvincible = false;
     }
 
 }

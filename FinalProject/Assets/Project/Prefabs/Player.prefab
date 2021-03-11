@@ -67,13 +67,13 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9e8e9929fe59f6a4ab0fe06427bf375a, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: b444c828f2b0a8b4cb316956dee38187, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 8
-  jumpingSpeed: 10
+  jumpingSpeed: 14
   container: {fileID: 8827057709963561751}
   powerupScale: 1.3
 --- !u!50 &8827057711092023952
