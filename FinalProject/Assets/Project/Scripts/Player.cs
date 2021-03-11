@@ -74,18 +74,21 @@ public class Player : MonoBehaviour
         }
 
     }
-
+    public void AddCoin()
+    {
+        if (OnCoinCollected != null)
+        {
+            OnCoinCollected();
+        }
+    }
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
         Debug.Log(otherCollider.gameObject.name);
         // Collects coin
         if (otherCollider.gameObject.tag == "Coin")
         {
-            if (OnCoinCollected != null)
-            {
-                OnCoinCollected();
-            }
-            //count coins
+
+            AddCoin();
             Destroy(otherCollider.gameObject);
 
         }
@@ -128,6 +131,21 @@ public class Player : MonoBehaviour
             else
             {
                 Hurt();
+            }
+        }
+        // Block collisions.
+        if (collision.gameObject.tag == "Block" && collision.relativeVelocity.y < 0)
+        {
+            RaycastHit2D leftHit = Physics2D.Raycast(new Vector2(transform.position.x - width / 2, transform.position.y + height / 2 + 0.01f), Vector2.up, (height / 2) + 0.02f);
+            RaycastHit2D rightHit = Physics2D.Raycast(new Vector2(transform.position.x + width / 2, transform.position.y + height / 2 + 0.01f), Vector2.up, (height / 2) + 0.02f);
+            RaycastHit2D centerHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y + height / 2 + 0.01f), Vector2.up, (height / 2) + 0.02f);
+
+            if ((leftHit.collider != null && leftHit.collider.gameObject == collision.gameObject) ||
+                (rightHit.collider != null && rightHit.collider.gameObject == collision.gameObject) ||
+                (centerHit.collider != null && centerHit.collider.gameObject == collision.gameObject))
+            {
+                Block block = collision.gameObject.GetComponent<Block>();
+                block.OnHit(this);
             }
         }
     }
