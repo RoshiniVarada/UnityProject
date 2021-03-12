@@ -106,8 +106,8 @@ public class Player : MonoBehaviour
             hasPowerup = true;
             Destroy(otherCollider.gameObject);
 
-           // transform.localScale = new Vector3(1.0f, powerupScale, 1.0f);
-           // height *= powerupScale;
+             transform.localScale = new Vector3(1.0f, powerupScale, 1.0f);
+             // height *= powerupScale;
 
         }
     }
@@ -185,6 +185,7 @@ public class Player : MonoBehaviour
         else
         {
             hasPowerup = false;
+            transform.localScale = Vector3.one;
             StartCoroutine(InvincibilityRoutine(2.0f));
         }
 
@@ -194,7 +195,14 @@ public class Player : MonoBehaviour
     {
         isInvincible = true;
 
-        yield return new WaitForSeconds(duration);
+        int blinkAmount = 20;
+        for (int i = 0; i < blinkAmount; i++)
+        {
+            container.SetActive(i % 2 == 0);
+
+            yield return new WaitForSeconds(duration / blinkAmount);
+        }
+        container.SetActive(true);
 
         isInvincible = false;
     }
