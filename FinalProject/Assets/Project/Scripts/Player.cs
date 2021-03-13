@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
             Destroy(otherCollider.gameObject);
 
              transform.localScale = new Vector3(1.0f, powerupScale, 1.0f);
-
+             height *= powerupScale;
         }
         if (otherCollider.gameObject.tag == "FinishLine")
         {
@@ -204,7 +204,10 @@ public class Player : MonoBehaviour
         else
         {
             hasPowerup = false;
+
             transform.localScale = Vector3.one;
+            height /= powerupScale;
+
             StartCoroutine(InvincibilityRoutine(2.0f));
         }
 

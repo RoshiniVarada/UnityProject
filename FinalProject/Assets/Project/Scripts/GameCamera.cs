@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class GameCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public Player player;
-    public Vector3 offset;
-    public float minimumY;
-    public float smoothFactor;
-    void Start()
-    {
-        
-    }
+	public Player player;
+	public Vector3 offset;
+	public float minimumY;
+	public float smoothFactor;
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (player != null && player.Dead == false)
-        {
-            Vector3 targetPosition = new Vector3(
-                                        offset.x + player.transform.position.x,
-                                        Mathf.Max(offset.y + player.transform.position.y, minimumY),
-                                        offset.z + transform.position.z
-                                    );
+	private bool win;
 
-            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothFactor * Time.deltaTime);
-        }
-    }
+	// Use this for initialization
+	void Start()
+	{
+		player.OnWin += OnWin;
+	}
+
+	// FixedUpdate is called on a fixed time interval
+	void FixedUpdate()
+	{
+		if (player != null && player.Dead == false && win == false)
+		{
+			Vector3 targetPosition = new Vector3(
+										offset.x + player.transform.position.x,
+										Mathf.Max(offset.y + player.transform.position.y, minimumY),
+										offset.z + transform.position.z
+									);
+
+			transform.position = Vector3.Lerp(transform.position, targetPosition, smoothFactor * Time.deltaTime);
+		}
+	}
+
+	void OnWin()
+	{
+		win = true;
+	}
 }

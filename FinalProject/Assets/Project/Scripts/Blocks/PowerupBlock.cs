@@ -5,7 +5,7 @@ using UnityEngine;
 public class PowerupBlock : Block
 {
 	public GameObject powerupPrefab;
-	//public Sprite brickSprite;
+	public Sprite brickSprite;
 
 	private bool spawned;
 
@@ -18,7 +18,7 @@ public class PowerupBlock : Block
 			GameObject powerupInstance = GameObject.Instantiate(powerupPrefab, transform.parent);
 			powerupInstance.transform.position = transform.position + Vector3.up * 1.2f;
 
-			//gameObject.GetComponentInChildren<SpriteRenderer>().sprite = brickSprite;
+			gameObject.GetComponentInChildren<SpriteRenderer>().sprite = brickSprite;
 		}
 	}
 }
