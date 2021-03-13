@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Block
   - Powerup
+  - FinishLine
   layers:
   - Default
   - TransparentFX

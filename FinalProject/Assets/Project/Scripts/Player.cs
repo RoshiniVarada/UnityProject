@@ -5,8 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public delegate void CollectCoinHandler();
+    public delegate void WinHandler();
+    public delegate void LoseHandler();
 
     public event CollectCoinHandler OnCoinCollected;
+    public event WinHandler OnWin;
+    public event LoseHandler OnLose;
 
     [Header("Movement")]
     public float walkingSpeed;
@@ -24,6 +28,7 @@ public class Player : MonoBehaviour
     private bool dead;
     private bool hasPowerup;
     private bool isInvincible;
+    private bool controllable;
     public bool Dead { get { return dead; } }
 
     // Start is called before the first frame update
@@ -34,12 +39,13 @@ public class Player : MonoBehaviour
 
         width = gameObject.GetComponent<CapsuleCollider2D>().size.x;
         height = gameObject.GetComponent<CapsuleCollider2D>().size.y;
+        controllable = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (dead == false)
+        if (dead == false && controllable)
         {
             // TO MAKE THE PLAYER MOVE HORIZAONTALLY
             playerRigidbody.velocity = new Vector2(
@@ -107,8 +113,16 @@ public class Player : MonoBehaviour
             Destroy(otherCollider.gameObject);
 
              transform.localScale = new Vector3(1.0f, powerupScale, 1.0f);
-             // height *= powerupScale;
 
+        }
+        if (otherCollider.gameObject.tag == "FinishLine")
+        {
+            controllable = false;
+
+            if (OnWin != null)
+            {
+                OnWin();
+            }
         }
     }
 
@@ -176,8 +190,13 @@ public class Player : MonoBehaviour
                 );
 
                 dead = true;
-
+                controllable = false;
                 Destroy(gameObject, 3f);
+                if (OnLose != null)
+                {
+                    OnLose();
+                }
+
             }
 
 
