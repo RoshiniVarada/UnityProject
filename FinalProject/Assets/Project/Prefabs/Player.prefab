@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkingSpeed: 8
-  jumpingSpeed: 14
+  jumpingSpeed: 12
   container: {fileID: 8827057709963561751}
   powerupScale: 1.3
 --- !u!50 &8827057711092023952
