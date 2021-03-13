@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
             hasPowerup = true;
             Destroy(otherCollider.gameObject);
 
-             transform.localScale = new Vector3(1.0f, powerupScale, 1.0f);
+            transform.localScale = new Vector3(1.5f, 1.0f, 1.0f);
              height *= powerupScale;
         }
         if (otherCollider.gameObject.tag == "FinishLine")

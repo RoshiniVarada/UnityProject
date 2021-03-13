@@ -12,8 +12,12 @@ public class GameSceneManager : MonoBehaviour
     public Text coinsText;
     public Text messageText;
 
+    public GameObject button;
+  
+
     private bool gameOver;
-    private float resetTimer = 3f;
+    private bool restart;
+    // private float resetTimer = 3f;
 
     private int coins = 0;
     private int Coins
@@ -37,18 +41,26 @@ public class GameSceneManager : MonoBehaviour
         player.OnLose += OnLose;
         Coins = 0;
         messageText.text = "";
+        button.SetActive(false);
+        restart = false;
     }
 
     // Update is called once per frame
+
+    public void restartClick()
+    {
+        if(gameOver)
+        restart = !restart;
+    }
     void Update()
     {
-        if (gameOver)
+        if (gameOver && restart)
         {
-            resetTimer -= Time.deltaTime;
-            if(resetTimer <= 0.0f)
-            {
+           // resetTimer -= Time.deltaTime;
+        ////    if(resetTimer <= 0.0f)
+           // {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+          //  }
         }
     }
 
@@ -60,10 +72,12 @@ public class GameSceneManager : MonoBehaviour
     {
         messageText.text = "You Win!";
         gameOver = true;
+        button.SetActive(true);
     }
     void OnLose()
     {
         messageText.text = "Game Over!";
         gameOver = true;
+        button.SetActive(true);
     }
 }
