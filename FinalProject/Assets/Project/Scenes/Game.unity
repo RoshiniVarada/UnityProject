@@ -3586,11 +3586,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 633483196}
     m_Modifications:
-    - target: {fileID: 8827057711092023953, guid: ce57340304affa648a9f9fa70adc5826,
-        type: 3}
-      propertyPath: walkingSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 8827057711092023954, guid: ce57340304affa648a9f9fa70adc5826,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3719,6 +3714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 8918415827283877989, guid: 13755ff2c0334a44d96523cb79153c9c,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.37
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13755ff2c0334a44d96523cb79153c9c, type: 3}

@@ -20,6 +20,13 @@ public class Player : MonoBehaviour
     public GameObject container;
     public float powerupScale = 1.3f;
 
+    [Header("Audio")]
+    public AudioSource destroyBlockAudio;
+    public AudioSource powerUpAudio;
+    public AudioSource jumpAudio;
+    public AudioSource coinPickAudio;
+    public AudioSource hurtAudio;
+
     private Rigidbody2D playerRigidbody;
     private Animator playerAnimator;
     private float width;
@@ -74,6 +81,7 @@ public class Player : MonoBehaviour
                         playerRigidbody.velocity.x,
                         jumpingSpeed
                     );
+                jumpAudio.Play();
             }
 
             // Set the player's animation.
@@ -98,6 +106,7 @@ public class Player : MonoBehaviour
 
             AddCoin();
             Destroy(otherCollider.gameObject);
+            coinPickAudio.Play();
 
         }
         if (otherCollider.gameObject.tag == "Enemy")
@@ -114,6 +123,7 @@ public class Player : MonoBehaviour
 
             transform.localScale = new Vector3(1.5f, 1.0f, 1.0f);
              height *= powerupScale;
+            powerUpAudio.Play();
         }
         if (otherCollider.gameObject.tag == "FinishLine")
         {
@@ -123,6 +133,7 @@ public class Player : MonoBehaviour
             {
                 OnWin();
             }
+            powerUpAudio.Play();
         }
     }
 
@@ -173,12 +184,14 @@ public class Player : MonoBehaviour
             {
                 Block block = collision.gameObject.GetComponent<Block>();
                 block.OnHit(this);
+                destroyBlockAudio.Play();
             }
         }
     }
 
     void Hurt()
     {
+      
         if (!hasPowerup)
         {
             if (!isInvincible)
@@ -196,6 +209,7 @@ public class Player : MonoBehaviour
                 {
                     OnLose();
                 }
+                hurtAudio.Play();
 
             }
 
@@ -203,6 +217,7 @@ public class Player : MonoBehaviour
         }
         else
         {
+            hurtAudio.Play();
             hasPowerup = false;
 
             transform.localScale = Vector3.one;
