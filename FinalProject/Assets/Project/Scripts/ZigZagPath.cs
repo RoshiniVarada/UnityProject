@@ -6,6 +6,7 @@ public class ZigZagPath : MonoBehaviour
 {
     public float walkingSpeed; 
     public float walkingDuration;
+    public GameObject Container;
 
     private Rigidbody2D objectRigidBody;
     private float walkingTimer;
@@ -37,5 +38,6 @@ public class ZigZagPath : MonoBehaviour
             walkingSpeed * (walkingRight ? 1 : -1),
             objectRigidBody.velocity.y
             );
+        Container.transform.localScale = new Vector3(walkingRight ? -1 : 1, 1, 1);
     }
 }
