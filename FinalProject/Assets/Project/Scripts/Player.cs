@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     {
         if (dead == false && controllable)
         {
-            // TO MAKE THE PLAYER MOVE HORIZAONTALLY
+            // TO MAKE THE PLAYER MOVE HORIZONTALLY
             playerRigidbody.velocity = new Vector2(
                  Input.GetAxis("Horizontal") * walkingSpeed,             //GET AXIS RETURNS -1 TO 1
                  playerRigidbody.velocity.y
@@ -71,8 +71,6 @@ public class Player : MonoBehaviour
             }
 
             //TO MAKE THE PLAYER JUMP
-            // RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, ( height / 2) + 0.1f);
-            // Debug.Log(hit.collider.name);
             RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - height / 2 - 0.01f), Vector2.down, 0.02f);
 
             if (hit.collider != null && Input.GetAxis("Jump") > 0)
@@ -99,7 +97,6 @@ public class Player : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        Debug.Log(otherCollider.gameObject.name);
         // Collects coin
         if (otherCollider.gameObject.tag == "Coin")
         {
