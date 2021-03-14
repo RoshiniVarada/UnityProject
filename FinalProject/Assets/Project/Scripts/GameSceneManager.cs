@@ -36,6 +36,7 @@ public class GameSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        button.GetComponentInChildren<Text>().text = "Play";
         player.OnCoinCollected += OnCoinCollected;
         player.OnWin += OnWin;
         player.OnLose += OnLose;
@@ -73,11 +74,13 @@ public class GameSceneManager : MonoBehaviour
         messageText.text = "You Win!";
         gameOver = true;
         button.SetActive(true);
+        button.GetComponentInChildren<Text>().text = "Restart";
     }
     void OnLose()
     {
         messageText.text = "Game Over!";
         gameOver = true;
         button.SetActive(true);
+        button.GetComponentInChildren<Text>().text = "Restart";
     }
 }
